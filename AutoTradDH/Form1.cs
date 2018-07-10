@@ -20,12 +20,18 @@ namespace AutoTradDH
             this.ItemSerchbt.Click += this.ButtonCliked;
             //일봉차트 클릭
             this.dailybt.Click += this.ButtonCliked;
+            //로그인
             this.axKHOpenAPI1.OnEventConnect += this.axKHOpenAPI1_OnEventConnect;
+            
+
             this.axKHOpenAPI1.OnReceiveTrData += this.axKHOpenAPI1_OnReceiverTrData;
             this.axKHOpenAPI1.OnReceiveRealData += this.axKHOPenAPI_OnReceiveRealData;
 
             //계좌정보조회
             this.comboBox1.SelectedIndexChanged += this.comboBox_Selecteindexchanged;
+
+            this.stockdatagrid.Click += this.ButtonCliked;
+            
         }
 
         //계좌정보
@@ -93,23 +99,48 @@ namespace AutoTradDH
                 else
                     this.listBox1.Items.Add("주식일봉 요청 실패");
                         }
+
+           
         }
 
        
-
+        //로그인
         public void axKHOpenAPI1_OnEventConnect(object sender, AxKHOpenAPILib._DKHOpenAPIEvents_OnEventConnectEvent e)
         {
             if (e.nErrCode == 0)
             {
                 this.listBox1.Items.Add("로그인성공");
+
+                //개인정보
+                getlogInfo();
+
+
+                //주식목록가져오기
+                getstocklists();
+                
+                
             }
             else
                 this.listBox1.Items.Add("로그인 실패");
 
+           
+        }
+        //주식목록가져오기
+        private void getstocklists()
+        {
+            String stockcodelist = axKHOpenAPI1.GetCodeListByMarket("0");
+            String[] stockcode = stockcodelist.Split(';');
+            for(int i=0; i < stockcode.Length; i++)
+            {
+                stockdatagrid.Rows.Add();
+                stockdatagrid["serchstock_code", i].Value = stockcode[i];
+                stockdatagrid["serchstock_name", i].Value = axKHOpenAPI1.GetMasterCodeName(stockcode[i]);
 
-            getlogInfo();
+                
+            }
         }
 
+        //개인 정보가져오기
         private void getlogInfo()
         {
             this.IDlb.Text += this.axKHOpenAPI1.GetLoginInfo("USER_ID");
@@ -127,22 +158,24 @@ namespace AutoTradDH
         {
 
             this.listBox1.Items.Add("e.sRQName = " + e.sRQName);
-            if (e.sRQName =="주식기본정보")
+            if (e.sRQName == "주식기본정보")
             {
-                
-                    this.listBox2.Items.Add("종목코드" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목코드"));
-                    this.listBox2.Items.Add(("종목명     " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명")).Replace(" ",""));
-                    this.listBox2.Items.Add("거래량" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량"));
-                    this.listBox2.Items.Add("시가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "시가"));
-                    this.listBox2.Items.Add("고가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "고가"));
-                    this.listBox2.Items.Add("저가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "저가"));
-                    this.listBox2.Items.Add("현재가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가"));
-                    this.listBox2.Items.Add("등락율" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "등락율"));
-                
-            }else if(e.sRQName == "주식일봉차트조회")
+
+                this.listBox2.Items.Add("종목코드" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목코드"));
+                this.listBox2.Items.Add(("종목명     " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명")).Replace(" ", ""));
+                this.listBox2.Items.Add("거래량" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량"));
+                this.listBox2.Items.Add("시가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "시가"));
+                this.listBox2.Items.Add("고가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "고가"));
+                this.listBox2.Items.Add("저가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "저가"));
+                this.listBox2.Items.Add("현재가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가"));
+                this.listBox2.Items.Add("등락율" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "등락율"));
+
+
+            }
+            else if (e.sRQName == "주식일봉차트조회")
             {
                 int nCnt = axKHOpenAPI1.GetRepeatCnt(e.sTrCode, e.sRQName);
-                for(int i =0; i < nCnt; i++)
+                for (int i = 0; i < nCnt; i++)
                 {
                     this.listBox2.Items.Add("일자" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "일자").Trim());
                     this.listBox2.Items.Add("현재가" + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "일자").Trim());
@@ -154,7 +187,8 @@ namespace AutoTradDH
                     this.listBox2.SelectedIndex = this.listBox2.Items.Count - 1;
 
                 }
-            }else if(e.sRQName == "계좌평가현황요청")
+            }
+            else if (e.sRQName == "계좌평가현황요청")
             {
                 this.listBox3.Items.Add("예수금 =" + Int32.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "예수금").Trim()));
                 this.listBox3.Items.Add("d+2추정예수금 =" + Int32.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "D+2추정예수금").Trim()));
@@ -173,7 +207,7 @@ namespace AutoTradDH
                 this.listBox3.Items.Add("누적손익율 =" + Int32.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "누적손익율").Trim()));
 
                 int nCnt = axKHOpenAPI1.GetRepeatCnt(e.sTrCode, e.sRQName);
-                for(int i=0; i < nCnt; i++)
+                for (int i = 0; i < nCnt; i++)
                 {
                     this.listBox3.Items.Add("종목명 = " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목명").Trim());
                     this.listBox3.Items.Add("종목코드 = " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목코드").Trim());
@@ -186,10 +220,15 @@ namespace AutoTradDH
                     this.listBox3.Items.Add("결제잔고 = " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "결제잔고").Trim());
                     this.listBox3.Items.Add("금일매수수량 = " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "금일매수수량").Trim());
                     this.listBox3.Items.Add("금일매도수량 = " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "금일매도수량").Trim());
-                    
-                }
 
-             
+                }
+            }else if(e.sRQName == "종목정보요청")
+            {
+                this.stock_name.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ","");
+                this.stock_nowprice.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Substring(1);
+                this.stock_cplastday.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "전일대비").Trim();
+                this.stock_deal.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량").Trim();
+                this.stock_updown.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "등락율").Trim();
             }
         }
 
@@ -217,6 +256,16 @@ namespace AutoTradDH
                 this.list_realtime.Items.Add("전일 거래량댜비(비율) = " + axKHOpenAPI1.GetCommRealData(e.sRealData, 30).Trim());
 
             }
+        }
+
+        //종목목록중 하나 눌렀을때
+        private void stockdatagrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String selected_stock_code = stockdatagrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            axKHOpenAPI1.SetInputValue("종목코드", selected_stock_code);
+            axKHOpenAPI1.CommRqData("종목정보요청", "opt10001", 0, "5000");
+
         }
     }
 }
