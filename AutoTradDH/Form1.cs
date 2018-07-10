@@ -18,6 +18,7 @@ namespace AutoTradDH
             this.loginButton.Click += this.ButtonCliked;
             this.logoutBt.Click += this.ButtonCliked;
             this.ItemSerchbt.Click += this.ButtonCliked;
+            this.serchbt.Click += this.ButtonCliked;
             //일봉차트 클릭
             this.dailybt.Click += this.ButtonCliked;
             //로그인
@@ -30,7 +31,7 @@ namespace AutoTradDH
             //계좌정보조회
             this.comboBox1.SelectedIndexChanged += this.comboBox_Selecteindexchanged;
 
-            this.stockdatagrid.Click += this.ButtonCliked;
+            
             
         }
 
@@ -99,6 +100,18 @@ namespace AutoTradDH
                 else
                     this.listBox1.Items.Add("주식일봉 요청 실패");
                         }
+            else if (sender.Equals(this.serchbt))
+            {
+                if (this.serchtx.Text.Trim().Length == 6)
+                {
+                    axKHOpenAPI1.SetInputValue("종목코드", this.serchtx.Text.Trim());
+                    axKHOpenAPI1.CommRqData("종목정보요청", "opt10001", 0, "55");
+                }
+                else
+                {
+                    MessageBox.Show("종목코드를 6자리에 맞게 입력하세요");
+                }
+            }
 
            
         }
@@ -224,10 +237,11 @@ namespace AutoTradDH
                 }
             }else if(e.sRQName == "종목정보요청")
             {
+                
                 this.stock_name.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ","");
-                this.stock_nowprice.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Substring(1);
-                this.stock_cplastday.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "전일대비").Trim();
-                this.stock_deal.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량").Trim();
+                this.stock_nowprice.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Trim()));
+                this.stock_cplastday.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "전일대비").Trim()));
+                this.stock_deal.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량").Trim()));
                 this.stock_updown.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "등락율").Trim();
             }
         }
@@ -267,5 +281,7 @@ namespace AutoTradDH
             axKHOpenAPI1.CommRqData("종목정보요청", "opt10001", 0, "5000");
 
         }
+
+        
     }
 }

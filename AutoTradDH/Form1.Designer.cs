@@ -64,10 +64,21 @@
             this.stock_cplastday = new System.Windows.Forms.Label();
             this.stock_deal = new System.Windows.Forms.Label();
             this.stock_updown = new System.Windows.Forms.Label();
+            this.deal = new System.Windows.Forms.TabControl();
+            this.deal_buy = new System.Windows.Forms.TabPage();
+            this.deal_sell = new System.Windows.Forms.TabPage();
+            this.deal_change = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockdatagrid)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.deal.SuspendLayout();
+            this.deal_buy.SuspendLayout();
+            this.deal_sell.SuspendLayout();
+            this.deal_change.SuspendLayout();
             this.SuspendLayout();
             // 
             // axKHOpenAPI1
@@ -248,6 +259,7 @@
             this.serchtx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.serchtx.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.serchtx.Location = new System.Drawing.Point(3, 3);
             this.serchtx.Name = "serchtx";
             this.serchtx.Size = new System.Drawing.Size(98, 21);
@@ -452,12 +464,121 @@
             this.stock_updown.Text = "-";
             this.stock_updown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // deal
+            // 
+            this.deal.Controls.Add(this.deal_buy);
+            this.deal.Controls.Add(this.deal_sell);
+            this.deal.Controls.Add(this.deal_change);
+            this.deal.Location = new System.Drawing.Point(374, 252);
+            this.deal.Name = "deal";
+            this.deal.SelectedIndex = 0;
+            this.deal.Size = new System.Drawing.Size(200, 291);
+            this.deal.TabIndex = 21;
+            // 
+            // deal_buy
+            // 
+            this.deal_buy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.deal_buy.Controls.Add(this.tableLayoutPanel3);
+            this.deal_buy.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.deal_buy.Location = new System.Drawing.Point(4, 22);
+            this.deal_buy.Name = "deal_buy";
+            this.deal_buy.Padding = new System.Windows.Forms.Padding(3);
+            this.deal_buy.Size = new System.Drawing.Size(192, 265);
+            this.deal_buy.TabIndex = 0;
+            this.deal_buy.Text = "매수";
+            // 
+            // deal_sell
+            // 
+            this.deal_sell.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.deal_sell.Controls.Add(this.tableLayoutPanel4);
+            this.deal_sell.Location = new System.Drawing.Point(4, 22);
+            this.deal_sell.Name = "deal_sell";
+            this.deal_sell.Padding = new System.Windows.Forms.Padding(3);
+            this.deal_sell.Size = new System.Drawing.Size(192, 265);
+            this.deal_sell.TabIndex = 1;
+            this.deal_sell.Text = "매도";
+            // 
+            // deal_change
+            // 
+            this.deal_change.BackColor = System.Drawing.Color.PaleGreen;
+            this.deal_change.Controls.Add(this.tableLayoutPanel5);
+            this.deal_change.Location = new System.Drawing.Point(4, 22);
+            this.deal_change.Name = "deal_change";
+            this.deal_change.Padding = new System.Windows.Forms.Padding(3);
+            this.deal_change.Size = new System.Drawing.Size(192, 265);
+            this.deal_change.TabIndex = 2;
+            this.deal_change.Text = "정정";
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.BackColor = System.Drawing.Color.Honeydew;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.43478F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.56522F));
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(16, 15);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 6;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(161, 115);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.MistyRose;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.43478F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.56522F));
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(16, 15);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 6;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(159, 115);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.BackColor = System.Drawing.Color.AliceBlue;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.43478F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.56522F));
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(16, 15);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 6;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(161, 119);
+            this.tableLayoutPanel4.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1420, 665);
+            this.Controls.Add(this.deal);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.stockdatagrid);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -479,6 +600,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.axKHOpenAPI1);
+            this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Name = "Form1";
             this.Text = "종목검색";
             ((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI1)).EndInit();
@@ -487,6 +609,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.stockdatagrid)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.deal.ResumeLayout(false);
+            this.deal_buy.ResumeLayout(false);
+            this.deal_sell.ResumeLayout(false);
+            this.deal_change.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -529,6 +655,13 @@
         private System.Windows.Forms.Label stock_cplastday;
         private System.Windows.Forms.Label stock_deal;
         private System.Windows.Forms.Label stock_updown;
+        private System.Windows.Forms.TabControl deal;
+        private System.Windows.Forms.TabPage deal_buy;
+        private System.Windows.Forms.TabPage deal_sell;
+        private System.Windows.Forms.TabPage deal_change;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
     }
 }
 
