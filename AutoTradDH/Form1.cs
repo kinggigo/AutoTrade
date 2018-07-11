@@ -18,9 +18,14 @@ namespace AutoTradDH
             this.loginButton.Click += this.ButtonCliked;
             this.logoutBt.Click += this.ButtonCliked;
             this.ItemSerchbt.Click += this.ButtonCliked;
+
             this.serchbt.Click += this.ButtonCliked;
             //일봉차트 클릭
             this.dailybt.Click += this.ButtonCliked;
+
+            //매수주문
+            this.buybt.Click += this.ButtonCliked;
+
             //로그인
             this.axKHOpenAPI1.OnEventConnect += this.axKHOpenAPI1_OnEventConnect;
             
@@ -31,7 +36,7 @@ namespace AutoTradDH
             //계좌정보조회
             this.comboBox1.SelectedIndexChanged += this.comboBox_Selecteindexchanged;
 
-            
+       
             
         }
 
@@ -110,6 +115,21 @@ namespace AutoTradDH
                 else
                 {
                     MessageBox.Show("종목코드를 6자리에 맞게 입력하세요");
+                }
+            }
+            else if (sender.Equals(this.buybt))
+            {
+                //매수버튼클릭시
+                if(this.매수주문가격textbox.Value >0 && this.매수주문수량textbox.Value>0&& this.매수종목코드textbox.Text.Length > 0 && this.comboBox1.Text.Length > 0)
+                {
+                    String 계좌번호 = comboBox1.Text;
+                    String 종목코드 = 매수종목코드textbox.Text;
+                    int 주문수량 = int.Parse(매수주문수량textbox.Value.ToString());
+                    int 주문가격 = int.Parse(매수주문가격textbox.Value.ToString());
+                    String[] 거래구분목록 = 매수거래구분combox.Text.Split(';');
+                    String 거래구분 = 거래구분목록[0];
+
+                    axKHOpenAPI1.SendOrder("현금매수주문", "5001", 계좌번호, 1, 종목코드, 주문수량, 주문가격, 거래구분, "");
                 }
             }
 
@@ -237,12 +257,18 @@ namespace AutoTradDH
                 }
             }else if(e.sRQName == "종목정보요청")
             {
-                
+                //종목에정보
                 this.stock_name.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ","");
-                this.stock_nowprice.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Trim()));
+                this.stock_nowprice.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-","").Trim()));
                 this.stock_cplastday.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "전일대비").Trim()));
                 this.stock_deal.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량").Trim()));
                 this.stock_updown.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "등락율").Trim();
+
+
+                //매수혹은 매도에 올리기
+                this.매수종목이름textbox.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ", "");
+                this.매수종목코드textbox.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목코드").Trim();
+                this.매수주문가격textbox.Value = long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-","").Trim()) ;
             }
         }
 
@@ -275,8 +301,15 @@ namespace AutoTradDH
         //종목목록중 하나 눌렀을때
         private void stockdatagrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            String selected_stock_code = stockdatagrid.Rows[e.RowIndex].Cells[0].Value.ToString();
 
+            String selected_stock_code = "";
+            try
+            {
+                selected_stock_code = stockdatagrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }catch(Exception exception)
+            {
+                Console.WriteLine(exception.Message.ToString());
+            }
             axKHOpenAPI1.SetInputValue("종목코드", selected_stock_code);
             axKHOpenAPI1.CommRqData("종목정보요청", "opt10001", 0, "5000");
 
