@@ -12,6 +12,9 @@ namespace AutoTradDH
 {
     public partial class Form1 : Form
     {
+
+        List<미체결> 미체결리스트;
+        List<주식잔고> 주식잔고리스트;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +28,11 @@ namespace AutoTradDH
 
             //매수주문
             this.buybt.Click += this.ButtonCliked;
+            //매도주문
+            this.sellbt.Click += this.ButtonCliked;
+
+            //계좌잔고조회클릭
+            this.잔고미채결bt.Click += this.ButtonCliked;
 
             //로그인
             this.axKHOpenAPI1.OnEventConnect += this.axKHOpenAPI1_OnEventConnect;
@@ -126,11 +134,48 @@ namespace AutoTradDH
                     String 종목코드 = 매수종목코드textbox.Text;
                     int 주문수량 = int.Parse(매수주문수량textbox.Value.ToString());
                     int 주문가격 = int.Parse(매수주문가격textbox.Value.ToString());
-                    String[] 거래구분목록 = 매수거래구분combox.Text.Split(';');
+                    String[] 거래구분목록 = 매수거래구분combox.Text.Split(':');
                     String 거래구분 = 거래구분목록[0];
 
-                    axKHOpenAPI1.SendOrder("현금매수주문", "5001", 계좌번호, 1, 종목코드, 주문수량, 주문가격, 거래구분, "");
+                    int result =  axKHOpenAPI1.SendOrder("현금매수주문", "5001", 계좌번호, 1, 종목코드, 주문수량, 주문가격, 거래구분, "");
+                    if(result == 0)
+                    {
+                        MessageBox.Show("주문성공");
+                    }
                 }
+            }
+            else if (sender.Equals(this.sellbt))
+            {
+                //매도버튼클릭시
+                if(this.매도주문가격value.Value > 0 && this.매도주문수량value.Value > 0 && this.매도종목코드textbox.Text.Length > 0 && this.comboBox1.Text.Length > 0){
+                    String 계좌번호 = comboBox1.Text;
+                    String 종목코드 = 매수종목코드textbox.Text;
+                    int 주문수량 = int.Parse(매수주문수량textbox.Value.ToString());
+                    int 주문가격 = int.Parse(매수주문가격textbox.Value.ToString());
+                    String[] 거래구분목록 = 매수거래구분combox.Text.Split(':');
+                    String 거래구분 = 거래구분목록[0];
+
+                    axKHOpenAPI1.SendOrder("현금매수주문", "5001", 계좌번호, 2, 종목코드, 주문수량, 주문가격, 거래구분, "");
+                }
+            }
+            else if (sender.Equals(this.잔고미채결bt))
+            {
+                미체결리스트 = new List<미체결>();
+                주식잔고리스트 = new List<주식잔고>();
+                //계좌잔고조회
+                axKHOpenAPI1.SetInputValue("계좌번호", this.comboBox1.Text);
+                axKHOpenAPI1.SetInputValue("비밀번호", "");
+                axKHOpenAPI1.SetInputValue("비밀번호입력매체구분", "00");
+                axKHOpenAPI1.SetInputValue("조회구분","2");
+
+                axKHOpenAPI1.CommRqData("계좌잔고조회", "opw00018", 0, "111");
+
+                //미채결조회
+                axKHOpenAPI1.SetInputValue("계좌번호", this.comboBox1.Text);
+                axKHOpenAPI1.SetInputValue("체결구분", "1");
+                axKHOpenAPI1.SetInputValue("매매구분", "0");
+                axKHOpenAPI1.CommRqData("실시간미체결요청", "opt10075", 0, "5002");
+
             }
 
            
@@ -255,11 +300,12 @@ namespace AutoTradDH
                     this.listBox3.Items.Add("금일매도수량 = " + axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "금일매도수량").Trim());
 
                 }
-            }else if(e.sRQName == "종목정보요청")
+            }
+            else if (e.sRQName == "종목정보요청")
             {
                 //종목에정보
-                this.stock_name.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ","");
-                this.stock_nowprice.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-","").Trim()));
+                this.stock_name.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ", "");
+                this.stock_nowprice.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-", "").Trim()));
                 this.stock_cplastday.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "전일대비").Trim()));
                 this.stock_deal.Text = string.Format("{0:#,###}", long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "거래량").Trim()));
                 this.stock_updown.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "등락율").Trim();
@@ -268,8 +314,73 @@ namespace AutoTradDH
                 //매수혹은 매도에 올리기
                 this.매수종목이름textbox.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ", "");
                 this.매수종목코드textbox.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목코드").Trim();
-                this.매수주문가격textbox.Value = long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-","").Trim()) ;
+                this.매수주문가격textbox.Value = long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-", "").Trim());
+                //매도
+                this.매도종목이름textbox.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목명").Replace(" ", "");
+                this.매도종목코드textbox.Text = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "종목코드").Trim();
+                this.매도주문가격value.Value = long.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, 0, "현재가").Replace("-", "").Trim());
+
             }
+            else if (e.sRQName == "계좌잔고조회")
+            {
+                //여러개 가져옴
+                int cnt = axKHOpenAPI1.GetRepeatCnt(e.sTrCode, e.sRQName);
+
+                잔고datagrid.Rows.Clear();
+                for (int i = 0; i < cnt; i++)
+                {
+                    try
+                    {
+                        string 종목번호 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목번호").Trim();
+                        string 종목명 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목명").Trim();
+                        double 수량 = double.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "보유수량"));
+                        double 매수금 = double.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "매입가"));
+                        double 현재가 = double.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "현재가"));
+                        double 평가손익 = double.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "평가손익"));
+                        double 수익률 = double.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "수익률(%)"));
+
+                        주식잔고 stocklist = new 주식잔고(종목번호, 종목명, 수량, 매수금, 현재가, 평가손익, 수익률);
+                        주식잔고리스트.Add(stocklist);
+                    }catch(Exception excp)
+                    {
+                        Console.WriteLine(excp.ToString());
+                    }
+                }
+
+
+                잔고datagrid.DataSource = 주식잔고리스트;
+
+            }
+            else if (e.sRQName == "실시간미체결요청")
+            {
+                int cnt = axKHOpenAPI1.GetRepeatCnt(e.sTrCode, e.sRQName);
+                미체결datagrid.Rows.Clear();
+                for(int i = 0; i < cnt; i++)
+                {
+                    try
+                    {
+                        string 주문번호 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "주문번호").Trim();
+                        string 종목코드 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목코드").Trim();
+                        string 종목명 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목명").Trim();
+                        int 주문수량 = int.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "주문수량"));
+                        int 주문가격 = int.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "주문가격"));
+                        int 현재가 = int.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "현재가"));
+                        int 미체결수량 = int.Parse(axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "미체결수량"));
+                        string 주문구분 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "주문구분").Trim();
+                        string 시간 = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "시간").Trim();
+                        미체결리스트.Add(new 미체결(주문번호, 종목코드, 종목명, 주문수량, 주문가격, 현재가, 미체결수량, 주문구분, 시간));
+
+                    }
+                    catch(Exception exception)
+                    {
+                        Console.WriteLine(exception.ToString());
+
+                    }
+                    미체결datagrid.DataSource = 미체결리스트;
+
+                }
+            }
+
         }
 
        private void axKHOPenAPI_OnReceiveRealData(object sender, AxKHOpenAPILib._DKHOpenAPIEvents_OnReceiveRealDataEvent e)
@@ -315,6 +426,61 @@ namespace AutoTradDH
 
         }
 
-        
-    }
+
+        class 주식잔고
+        {
+            public string 종목코드 { get; set; }
+            public string 종목명 { get; set; }
+            public double 수량 { get; set; }
+            public double 매수금 { get; set; }
+            public double 현재가 { get; set; }
+            public double 평가손익 { get; set; }
+            public double 수익률 { get; set; }
+
+            public 주식잔고() { }
+
+            public 주식잔고(string 종목번호, string 종목명, double 수량, double 매수금, double 현재가, double 평가손익, double 수익률)
+            {
+                this.종목코드 = 종목번호;
+                this.종목명 = 종목명;
+                this.수량 = 수량;
+                this.매수금 = 매수금;
+                this.현재가 = 현재가;
+                this.평가손익 = 평가손익;
+                this.수익률 = 수익률;
+            }
+        }
+        class 미체결
+        {
+            public string 주문번호 { get; set; }
+            public string 종목코드 { get; set; }
+            public string 종목명 { get; set; }
+            public int 주문수량 { get; set; }
+            public int 주문가격 { get; set; }
+            public int 미체결수량 { get; set; }
+            public string 주문구분 { get; set; }
+            public string 시간 { get; set; }
+            public int 현재가 { get; set; }
+
+            public 미체결()
+            {
+
+            }
+            public 미체결(string 주문번호, string 종목코드, string 종목명, int 주문수량, int 주문가격, int 현재가, int 미체결수량, string 주문구분, string 시간)
+            {
+                this.주문번호 = 주문번호;
+                this.종목코드 = 종목코드;
+                this.종목명 = 종목명;
+                this.주문수량 = 주문수량;
+                this.주문가격 = 주문가격;
+                this.미체결수량 = 미체결수량;
+                this.주문구분 = 주문구분;
+                this.시간 = 시간;
+                this.현재가 = 현재가;
+
+            }
+        }
+
+
+        }
 }

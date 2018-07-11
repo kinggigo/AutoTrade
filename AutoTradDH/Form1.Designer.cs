@@ -68,22 +68,38 @@
             this.deal_buy = new System.Windows.Forms.TabPage();
             this.buybt = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.deal_sell = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.deal_change = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.sellbt = new System.Windows.Forms.Button();
-            this.changbt = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.매수주문가격textbox = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.매수종목코드textbox = new System.Windows.Forms.TextBox();
             this.매수종목이름textbox = new System.Windows.Forms.TextBox();
             this.매수주문수량textbox = new System.Windows.Forms.NumericUpDown();
-            this.매수주문가격textbox = new System.Windows.Forms.NumericUpDown();
             this.매수거래구분combox = new System.Windows.Forms.ComboBox();
+            this.deal_sell = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.매도주문가격value = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.매도종목이름textbox = new System.Windows.Forms.TextBox();
+            this.매도주문수량value = new System.Windows.Forms.NumericUpDown();
+            this.매도거래구분value = new System.Windows.Forms.ComboBox();
+            this.매도종목코드textbox = new System.Windows.Forms.TextBox();
+            this.sellbt = new System.Windows.Forms.Button();
+            this.deal_change = new System.Windows.Forms.TabPage();
+            this.changbt = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.잔고page = new System.Windows.Forms.TabPage();
+            this.미체결page = new System.Windows.Forms.TabPage();
+            this.잔고datagrid = new System.Windows.Forms.DataGridView();
+            this.미체결datagrid = new System.Windows.Forms.DataGridView();
+            this.잔고미채결bt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockdatagrid)).BeginInit();
@@ -91,10 +107,18 @@
             this.deal.SuspendLayout();
             this.deal_buy.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.deal_sell.SuspendLayout();
-            this.deal_change.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.매수주문수량textbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.매수주문가격textbox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.매수주문수량textbox)).BeginInit();
+            this.deal_sell.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.매도주문가격value)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.매도주문수량value)).BeginInit();
+            this.deal_change.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.잔고page.SuspendLayout();
+            this.미체결page.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.잔고datagrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.미체결datagrid)).BeginInit();
             this.SuspendLayout();
             // 
             // axKHOpenAPI1
@@ -544,115 +568,33 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(159, 153);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // label8
+            // 매수주문가격textbox
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.매수주문가격textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(4, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 29);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "종목이름";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.매수주문가격textbox.Location = new System.Drawing.Point(66, 94);
+            this.매수주문가격textbox.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.매수주문가격textbox.Name = "매수주문가격textbox";
+            this.매수주문가격textbox.Size = new System.Drawing.Size(89, 21);
+            this.매수주문가격textbox.TabIndex = 8;
             // 
-            // deal_sell
+            // label12
             // 
-            this.deal_sell.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.deal_sell.Controls.Add(this.sellbt);
-            this.deal_sell.Controls.Add(this.tableLayoutPanel4);
-            this.deal_sell.Location = new System.Drawing.Point(4, 22);
-            this.deal_sell.Name = "deal_sell";
-            this.deal_sell.Padding = new System.Windows.Forms.Padding(3);
-            this.deal_sell.Size = new System.Drawing.Size(192, 265);
-            this.deal_sell.TabIndex = 1;
-            this.deal_sell.Text = "매도";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.BackColor = System.Drawing.Color.AliceBlue;
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.43478F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.56522F));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(16, 15);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 6;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(161, 119);
-            this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // deal_change
-            // 
-            this.deal_change.BackColor = System.Drawing.Color.PaleGreen;
-            this.deal_change.Controls.Add(this.changbt);
-            this.deal_change.Controls.Add(this.tableLayoutPanel5);
-            this.deal_change.Location = new System.Drawing.Point(4, 22);
-            this.deal_change.Name = "deal_change";
-            this.deal_change.Padding = new System.Windows.Forms.Padding(3);
-            this.deal_change.Size = new System.Drawing.Size(192, 265);
-            this.deal_change.TabIndex = 2;
-            this.deal_change.Text = "정정";
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.BackColor = System.Drawing.Color.Honeydew;
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.43478F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.56522F));
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(16, 15);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 6;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(161, 115);
-            this.tableLayoutPanel5.TabIndex = 1;
-            // 
-            // sellbt
-            // 
-            this.sellbt.Location = new System.Drawing.Point(27, 150);
-            this.sellbt.Name = "sellbt";
-            this.sellbt.Size = new System.Drawing.Size(138, 41);
-            this.sellbt.TabIndex = 3;
-            this.sellbt.Text = "매수 주문";
-            this.sellbt.UseVisualStyleBackColor = true;
-            // 
-            // changbt
-            // 
-            this.changbt.Location = new System.Drawing.Point(26, 150);
-            this.changbt.Name = "changbt";
-            this.changbt.Size = new System.Drawing.Size(138, 41);
-            this.changbt.TabIndex = 3;
-            this.changbt.Text = "매수 주문";
-            this.changbt.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 61);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 29);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "주문수량";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 121);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(55, 31);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "거래구분";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -667,18 +609,31 @@
             this.label11.Text = "주문가격";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // label9
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 121);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 31);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "거래구분";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 61);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(55, 29);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "주문수량";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 29);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "종목이름";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label13
             // 
@@ -728,21 +683,6 @@
             this.매수주문수량textbox.Size = new System.Drawing.Size(89, 21);
             this.매수주문수량textbox.TabIndex = 7;
             // 
-            // 매수주문가격textbox
-            // 
-            this.매수주문가격textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.매수주문가격textbox.Location = new System.Drawing.Point(66, 94);
-            this.매수주문가격textbox.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.매수주문가격textbox.Name = "매수주문가격textbox";
-            this.매수주문가격textbox.Size = new System.Drawing.Size(89, 21);
-            this.매수주문가격textbox.TabIndex = 8;
-            // 
             // 매수거래구분combox
             // 
             this.매수거래구분combox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -758,12 +698,302 @@
             this.매수거래구분combox.TabIndex = 9;
             this.매수거래구분combox.Text = "선택";
             // 
+            // deal_sell
+            // 
+            this.deal_sell.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.deal_sell.Controls.Add(this.tableLayoutPanel4);
+            this.deal_sell.Controls.Add(this.sellbt);
+            this.deal_sell.Location = new System.Drawing.Point(4, 22);
+            this.deal_sell.Name = "deal_sell";
+            this.deal_sell.Padding = new System.Windows.Forms.Padding(3);
+            this.deal_sell.Size = new System.Drawing.Size(192, 265);
+            this.deal_sell.TabIndex = 1;
+            this.deal_sell.Text = "매도";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.BackColor = System.Drawing.Color.LightBlue;
+            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.24051F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.75949F));
+            this.tableLayoutPanel4.Controls.Add(this.매도주문가격value, 1, 3);
+            this.tableLayoutPanel4.Controls.Add(this.label14, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.label15, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.label16, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.label17, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label18, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.매도종목이름textbox, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.매도주문수량value, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.매도거래구분value, 1, 4);
+            this.tableLayoutPanel4.Controls.Add(this.매도종목코드textbox, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(21, 15);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 5;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(159, 153);
+            this.tableLayoutPanel4.TabIndex = 4;
+            // 
+            // 매도주문가격value
+            // 
+            this.매도주문가격value.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.매도주문가격value.Location = new System.Drawing.Point(66, 94);
+            this.매도주문가격value.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.매도주문가격value.Name = "매도주문가격value";
+            this.매도주문가격value.Size = new System.Drawing.Size(89, 21);
+            this.매도주문가격value.TabIndex = 8;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(4, 121);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 31);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "거래구분";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(4, 91);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 29);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "주문가격";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(4, 61);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 29);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "주문수량";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(4, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(55, 29);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "종목이름";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(4, 1);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(55, 29);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "종목코드";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // 매도종목이름textbox
+            // 
+            this.매도종목이름textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.매도종목이름textbox.Location = new System.Drawing.Point(66, 34);
+            this.매도종목이름textbox.Name = "매도종목이름textbox";
+            this.매도종목이름textbox.Size = new System.Drawing.Size(89, 21);
+            this.매도종목이름textbox.TabIndex = 6;
+            // 
+            // 매도주문수량value
+            // 
+            this.매도주문수량value.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.매도주문수량value.Location = new System.Drawing.Point(66, 64);
+            this.매도주문수량value.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.매도주문수량value.Name = "매도주문수량value";
+            this.매도주문수량value.Size = new System.Drawing.Size(89, 21);
+            this.매도주문수량value.TabIndex = 7;
+            // 
+            // 매도거래구분value
+            // 
+            this.매도거래구분value.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.매도거래구분value.FormattingEnabled = true;
+            this.매도거래구분value.Items.AddRange(new object[] {
+            "00:지정가",
+            "03:시장가"});
+            this.매도거래구분value.Location = new System.Drawing.Point(66, 124);
+            this.매도거래구분value.Name = "매도거래구분value";
+            this.매도거래구분value.Size = new System.Drawing.Size(89, 20);
+            this.매도거래구분value.TabIndex = 9;
+            this.매도거래구분value.Text = "선택";
+            // 
+            // 매도종목코드textbox
+            // 
+            this.매도종목코드textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.매도종목코드textbox.Location = new System.Drawing.Point(66, 4);
+            this.매도종목코드textbox.Name = "매도종목코드textbox";
+            this.매도종목코드textbox.Size = new System.Drawing.Size(89, 21);
+            this.매도종목코드textbox.TabIndex = 5;
+            // 
+            // sellbt
+            // 
+            this.sellbt.Location = new System.Drawing.Point(21, 174);
+            this.sellbt.Name = "sellbt";
+            this.sellbt.Size = new System.Drawing.Size(138, 41);
+            this.sellbt.TabIndex = 3;
+            this.sellbt.Text = "매도 주문";
+            this.sellbt.UseVisualStyleBackColor = true;
+            // 
+            // deal_change
+            // 
+            this.deal_change.BackColor = System.Drawing.Color.PaleGreen;
+            this.deal_change.Controls.Add(this.changbt);
+            this.deal_change.Controls.Add(this.tableLayoutPanel5);
+            this.deal_change.Location = new System.Drawing.Point(4, 22);
+            this.deal_change.Name = "deal_change";
+            this.deal_change.Padding = new System.Windows.Forms.Padding(3);
+            this.deal_change.Size = new System.Drawing.Size(192, 265);
+            this.deal_change.TabIndex = 2;
+            this.deal_change.Text = "정정";
+            // 
+            // changbt
+            // 
+            this.changbt.Location = new System.Drawing.Point(26, 150);
+            this.changbt.Name = "changbt";
+            this.changbt.Size = new System.Drawing.Size(138, 41);
+            this.changbt.TabIndex = 3;
+            this.changbt.Text = "매수 주문";
+            this.changbt.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.BackColor = System.Drawing.Color.Honeydew;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.43478F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.56522F));
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(16, 15);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 6;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(161, 115);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.잔고page);
+            this.tabControl1.Controls.Add(this.미체결page);
+            this.tabControl1.Location = new System.Drawing.Point(121, 603);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(764, 185);
+            this.tabControl1.TabIndex = 22;
+            this.tabControl1.TabStop = false;
+            // 
+            // 잔고page
+            // 
+            this.잔고page.Controls.Add(this.잔고datagrid);
+            this.잔고page.Location = new System.Drawing.Point(4, 22);
+            this.잔고page.Name = "잔고page";
+            this.잔고page.Padding = new System.Windows.Forms.Padding(3);
+            this.잔고page.Size = new System.Drawing.Size(756, 159);
+            this.잔고page.TabIndex = 0;
+            this.잔고page.Text = "잔고";
+            this.잔고page.UseVisualStyleBackColor = true;
+            // 
+            // 미체결page
+            // 
+            this.미체결page.Controls.Add(this.미체결datagrid);
+            this.미체결page.Location = new System.Drawing.Point(4, 22);
+            this.미체결page.Name = "미체결page";
+            this.미체결page.Padding = new System.Windows.Forms.Padding(3);
+            this.미체결page.Size = new System.Drawing.Size(756, 159);
+            this.미체결page.TabIndex = 1;
+            this.미체결page.Text = "미체결";
+            this.미체결page.UseVisualStyleBackColor = true;
+            // 
+            // 잔고datagrid
+            // 
+            this.잔고datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.잔고datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.잔고datagrid.Location = new System.Drawing.Point(0, 0);
+            this.잔고datagrid.Name = "잔고datagrid";
+            this.잔고datagrid.RowTemplate.Height = 23;
+            this.잔고datagrid.Size = new System.Drawing.Size(756, 163);
+            this.잔고datagrid.TabIndex = 0;
+            // 
+            // 미체결datagrid
+            // 
+            this.미체결datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.미체결datagrid.Location = new System.Drawing.Point(0, 0);
+            this.미체결datagrid.Name = "미체결datagrid";
+            this.미체결datagrid.RowTemplate.Height = 23;
+            this.미체결datagrid.Size = new System.Drawing.Size(756, 159);
+            this.미체결datagrid.TabIndex = 0;
+            // 
+            // 잔고미채결bt
+            // 
+            this.잔고미채결bt.BackColor = System.Drawing.Color.White;
+            this.잔고미채결bt.Location = new System.Drawing.Point(382, 556);
+            this.잔고미채결bt.Name = "잔고미채결bt";
+            this.잔고미채결bt.Size = new System.Drawing.Size(154, 47);
+            this.잔고미채결bt.TabIndex = 23;
+            this.잔고미채결bt.Text = "잔고미채결조회";
+            this.잔고미채결bt.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1420, 665);
+            this.ClientSize = new System.Drawing.Size(1420, 812);
+            this.Controls.Add(this.잔고미채결bt);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.deal);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.stockdatagrid);
@@ -799,10 +1029,19 @@
             this.deal_buy.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.deal_sell.ResumeLayout(false);
-            this.deal_change.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.매수주문수량textbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.매수주문가격textbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.매수주문수량textbox)).EndInit();
+            this.deal_sell.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.매도주문가격value)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.매도주문수량value)).EndInit();
+            this.deal_change.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.잔고page.ResumeLayout(false);
+            this.미체결page.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.잔고datagrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.미체결datagrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -851,7 +1090,6 @@
         private System.Windows.Forms.TabPage deal_change;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buybt;
         private System.Windows.Forms.Button sellbt;
@@ -865,6 +1103,23 @@
         private System.Windows.Forms.TextBox 매수종목이름textbox;
         private System.Windows.Forms.NumericUpDown 매수주문수량textbox;
         private System.Windows.Forms.ComboBox 매수거래구분combox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.NumericUpDown 매도주문가격value;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox 매도종목이름textbox;
+        private System.Windows.Forms.NumericUpDown 매도주문수량value;
+        private System.Windows.Forms.ComboBox 매도거래구분value;
+        private System.Windows.Forms.TextBox 매도종목코드textbox;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage 잔고page;
+        private System.Windows.Forms.DataGridView 잔고datagrid;
+        private System.Windows.Forms.TabPage 미체결page;
+        private System.Windows.Forms.DataGridView 미체결datagrid;
+        private System.Windows.Forms.Button 잔고미채결bt;
     }
 }
 
